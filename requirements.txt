@@ -1,0 +1,2 @@
+python-chess
+# Add LLM library here (e.g., openai, anthropic, etc.) 
