@@ -1,2 +1,4 @@
+Flask
 python-chess
+ollama # For Llama 3 integration via Ollama
 # Add LLM library here (e.g., openai, anthropic, etc.) 

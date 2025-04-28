@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chess Coach</title>
+    <!-- chessboard.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>AI Chess Coach</h1>
+    <!-- This div will be replaced by the board -->
+    <div id="myBoard"></div> 
+    
+    <!-- Status messages -->
+    <div id="status">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+    </div>
+
+    <div id="chat-container">
+        <h2>Ask the Coach</h2>
+        <textarea id="user-query" rows="3" placeholder="Ask a question about the current position..."></textarea>
+        <button id="ask-button">Ask</button>
+        <div id="coach-advice" style="margin-top: 10px; border: 1px solid #ccc; padding: 10px; min-height: 50px;">
+            <!-- AI advice will appear here -->
+        </div>
+    </div>
+
+    <!-- jQuery (required by chessboard.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- chess.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+    <!-- chessboard.js (Use non-minified version for debugging) -->
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Pass initial FEN string from Flask to JavaScript
+        var initialFen = "{{ initial_fen }}"; 
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html> 
